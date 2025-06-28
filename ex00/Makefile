@@ -6,38 +6,44 @@
 #    By: chtan <chtan@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 12:35:05 by chtan             #+#    #+#              #
-#    Updated: 2025/05/29 11:55:14 by chtan            ###   ########.fr        #
+#    Updated: 2025/06/15 09:15:39 by chtan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	./Program
-CXX				=	@c++
-CXXFLAGS		=	-Wall -Wextra -Werror -pedantic -std=c++98 -g3
-SRC				=	./src/*.cpp
-CPPFLAGS		=	-I./inc/
-OBJ_DIR			=	./obj
+NAME        = ./Program
+CXX         = c++
+CXXFLAGS    = -Wall -Wextra -Werror -pedantic -std=c++98 -g3
+SRC_DIR     = ./src
+INC_DIR     = ./inc
+OBJ_DIR     = ./obj
+SRCS        = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS        = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
+
 # ------------------------------------------------------------------#
-# makefile-rules  								  			#
+# Rules to prevent relinking                                         #
 # ------------------------------------------------------------------#
-all				:	$(NAME)
-					@echo "\033[0;32mProgram is ready!\033[0m"
+all: $(NAME)
+	@echo "\033[0;32m✅ Program is ready!\033[0m"
 
-$(NAME)			:	$(SRC)
-	@$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $(SRC)
-	@mkdir -p $(OBJ_DIR) && mv ./*.o $(OBJ_DIR)
-	@$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $(NAME) $(OBJ_DIR)/*.o
+$(NAME): $(OBJS)
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $@
+	@echo "\033[0;32m🔧 Linking complete!\033[0m"
 
-clean			:
-	@rm -rf $(OBJ_DIR) && rm -rf ./*.o
-	@echo "\033[0;31mProgram deleted successfully!\033[0m"
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
+	@$(CXX) $(CXXFLAGS) -I$(INC_DIR) -c $< -o $@
 
-fclean			:	clean
-	@rm -rf $(NAME)
-	@sleep 1
-	@clear
+clean:
+	@rm -rf $(OBJ_DIR)
+	@echo "\033[0;31m🧹 Cleaned object files!\033[0m"
 
+fclean: clean
+	@rm -f $(NAME)
+	@echo "\033[0;31m🗑️  Full clean complete!\033[0m"
 
-re				:	fclean all
+re: fclean all
 
-run				: 
-	@reset && $(MAKE) -s re && $(NAME)
+run: $(NAME)
+	@./$(NAME)
+
+.PHONY: all clean fclean re run
