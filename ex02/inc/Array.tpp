@@ -6,7 +6,7 @@
 /*   By: jaxztan <jaxztan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:32:23 by jaxztan           #+#    #+#             */
-/*   Updated: 2025/07/05 12:21:28 by jaxztan          ###   ########.fr       */
+/*   Updated: 2025/07/05 13:03:05 by jaxztan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Array<T>::Array() : _array(nullptr), _size(0)
 {}
 
 template <typename T>
-Array<T>::Array(int size) : _size(size)
+Array<T>::Array( unsigned int size) : _size(size)
 {
     this->_array = new T[size];
 }
@@ -29,7 +29,7 @@ Array<T>::Array(const Array &other) : _size(other._size)
 		_array = new T[_size];
 	else
 		_array = NULL;
-    for (int i = 0; i < other._size; i++)
+    for (unsigned int i = 0; i < other._size; i++)
         this->_array[i] = other._array[i];
 }
 
@@ -43,7 +43,7 @@ Array<T> &Array<T>::operator=(const Array &other)
 
 
 template<class T>
-T &Array<T>::operator[](int n)
+T &Array<T>::operator[](unsigned int n)
 {
 	if (n >= this->_size)
 		throw (Array::OutOfBounds());

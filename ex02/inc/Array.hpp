@@ -6,7 +6,7 @@
 /*   By: jaxztan <jaxztan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:13:22 by jaxztan           #+#    #+#             */
-/*   Updated: 2025/07/05 12:21:24 by jaxztan          ###   ########.fr       */
+/*   Updated: 2025/07/05 13:02:55 by jaxztan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 template <typename T> class Array
 {
     private:
-        T      *_array;
-        int    _size;
+        T               *_array;
+        unsigned int    _size;
 
     public:
         Array<T>();
-        Array<T>(int size);
+        Array<T>(unsigned int size);
         Array<T>(const Array &other);
         Array<T> &operator=(const Array &other);
-        T &operator[](int n);
+        T &operator[](unsigned int n);
         ~Array<T>();
 
         unsigned int size() const;
