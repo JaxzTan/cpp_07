@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chtan <chtan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jaxztan <jaxztan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:10:03 by chtan             #+#    #+#             */
-/*   Updated: 2025/05/30 12:11:41 by chtan            ###   ########.fr       */
+/*   Updated: 2025/07/05 13:37:13 by jaxztan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/iter.hpp"
 
-void print(int value)
+template <typename T> void print(T &value)
 {
     std::cout << value << " ";
 }
@@ -23,7 +23,7 @@ int main()
     size_t length = sizeof(array) / sizeof(array[0]);
 
     std::cout << "Array elements: ";
-    iter(array, length, print);
+    iter(array, length, print<int>);
     std::cout << std::endl;
 
     return 0;
