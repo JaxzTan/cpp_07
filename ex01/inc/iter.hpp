@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaxztan <jaxztan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:57 by chtan             #+#    #+#             */
-/*   Updated: 2025/05/31 09:50:25 by chtan            ###   ########.fr       */
+/*   Updated: 2025/07/05 15:11:31 by jaxztan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 # include<iostream>
+# include<cstdlib>
 
 template <typename T>
 void	iter(T* array, size_t length, void(*f)(T&))
