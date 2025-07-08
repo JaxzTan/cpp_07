@@ -6,7 +6,7 @@
 /*   By: jaxztan <jaxztan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:32:23 by jaxztan           #+#    #+#             */
-/*   Updated: 2025/07/05 13:03:05 by jaxztan          ###   ########.fr       */
+/*   Updated: 2025/07/08 08:35:06 by jaxztan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,22 @@ Array<T>::Array(const Array &other) : _size(other._size)
 template <typename T>
 Array<T> &Array<T>::operator=(const Array &other)
 {
-    if (this == &other)
-        return (*this);
+    if (this != &other)
+    {
+        if (this->_array)
+            delete[] this->_array;
+        this->_size = other._size;
+        if (this->_size > 0)
+        {
+            this->_array = new T[this->_size];
+            for (unsigned int i = 0; i < this->_size; i++)
+                this->_array[i] = other._array[i];
+        }
+        else
+        {
+            this->_array = nullptr;
+        }
+    }
     return (*this);
 }
 
