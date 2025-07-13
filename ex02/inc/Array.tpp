@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaxztan <jaxztan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:32:23 by jaxztan           #+#    #+#             */
-/*   Updated: 2025/07/08 08:35:06 by jaxztan          ###   ########.fr       */
+/*   Updated: 2025/07/13 10:21:43 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
 template <typename T>
-Array<T>::Array() : _array(nullptr), _size(0)
+Array<T>::Array() : _array(NULL), _size(0)
 {}
 
 template <typename T>
@@ -49,7 +49,7 @@ Array<T> &Array<T>::operator=(const Array &other)
         }
         else
         {
-            this->_array = nullptr;
+            this->_array = NULL;
         }
     }
     return (*this);
